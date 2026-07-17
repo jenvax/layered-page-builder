@@ -519,6 +519,10 @@
       { title: "Fill the Grid Spaces with Doodles", kind: "gridDoodle" }
     ];
 
+    const whiteSpreadTextureCards = [
+      { title: "Intuitive Watercolor", detail: "Add intuitive watercolor marks, blooms, washes, or loose shapes." }
+    ];
+
     const order = ["color", "prep", "texture", "development", "keepGoing"];
     const state = {};
 
@@ -546,6 +550,9 @@
     }
 
     function cardsFor(key) {
+      if (key === "texture" && state.prep && state.prep.title === "White Spread") {
+        return decks.texture.cards.concat(whiteSpreadTextureCards);
+      }
       if (key === "development" && state.texture && state.texture.title === "Divide the Page") {
         return decks.development.cards.concat(gridDevelopmentCards);
       }
