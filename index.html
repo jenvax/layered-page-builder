@@ -8,7 +8,7 @@
     :root {
       --ink: #2e2745;
       --muted: #6f6584;
-      --line: rgba(46, 39, 69, 0.12);
+      --line: rgba(46, 39, 69, 0.08);
       --paper: #fffdf6;
       --cream: #fff8e8;
       --mint: #dff8ee;
@@ -16,8 +16,8 @@
       --peach: #ffc99a;
       --panel: rgba(255, 254, 248, 0.86);
       --card: rgba(255, 254, 248, 0.92);
-      --shadow: 0 18px 45px rgba(46, 39, 69, 0.10);
-      --radius: 24px;
+      --shadow: 0 18px 38px rgba(46, 39, 69, 0.14);
+      --radius: 18px;
     }
 
     * {
@@ -36,6 +36,8 @@
         radial-gradient(circle at 82% 18%, rgba(188, 239, 223, 0.56), transparent 34%),
         linear-gradient(115deg, #fff4dc, #f9fbf2 45%, #e5f8ed);
       background-size: 34px 34px, 34px 34px, auto, auto, auto;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
     }
 
     button {
@@ -46,29 +48,33 @@
     }
 
     .page {
-      width: min(1240px, calc(100% - 32px));
-      margin: 10px auto 40px;
-      padding: clamp(24px, 4vw, 56px);
-      border: 4px solid rgba(255, 188, 132, 0.72);
-      border-radius: 36px;
+      width: min(980px, calc(100% - 24px));
+      margin: 0 auto 32px;
+      padding: 0;
+      overflow: hidden;
+      border: 2px solid rgba(244, 189, 135, 0.7);
+      border-radius: 24px;
       background:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px),
-        linear-gradient(100deg, rgba(255, 229, 163, 0.35), rgba(227, 252, 239, 0.55));
-      background-size: 34px 34px, 34px 34px, auto;
+        linear-gradient(90deg, rgba(98, 143, 120, 0.06) 1px, transparent 1px),
+        linear-gradient(rgba(98, 143, 120, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at 8% 8%, rgba(255, 224, 138, 0.45), transparent 30%),
+        radial-gradient(circle at 94% 16%, rgba(174, 232, 211, 0.48), transparent 28%),
+        var(--cream);
+      background-size: 22px 22px, 22px 22px, auto, auto, auto;
+      box-shadow: var(--shadow);
     }
 
     .hero {
       display: grid;
-      gap: 28px;
-      margin-bottom: 44px;
+      gap: 0;
+      padding: 28px;
     }
 
     h1 {
       margin: 0;
-      max-width: 1250px;
-      font-size: clamp(3.1rem, 6.5vw, 7rem);
-      line-height: 0.96;
+      max-width: 760px;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.05;
       letter-spacing: 0;
     }
 
@@ -76,15 +82,16 @@
       max-width: 720px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(1.25rem, 2vw, 2rem);
-      font-weight: 650;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 12px;
       align-items: center;
+      margin: 22px 0 0;
     }
 
     .primary,
@@ -93,16 +100,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 72px;
-      padding: 0 40px;
+      min-height: 44px;
+      padding: 0 22px;
       border-radius: 999px;
-      font-size: clamp(1.1rem, 1.7vw, 1.9rem);
-      font-weight: 850;
+      font-size: 1rem;
+      font-weight: 800;
       transition: transform 160ms ease, filter 160ms ease;
     }
 
     .primary {
-      min-width: min(450px, 100%);
       background: var(--pink);
     }
 
@@ -119,105 +125,26 @@
 
     .workspace {
       display: grid;
-      gap: clamp(28px, 3vw, 44px);
+      gap: 20px;
       align-items: start;
+      padding: 24px;
     }
 
-    .builder-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(22px, 2.8vw, 34px);
-    }
-
-    .prompt-card,
     .recipe-panel {
-      border: 2px solid rgba(46, 39, 69, 0.13);
+      border: 2px solid rgba(244, 189, 135, 0.55);
       box-shadow: var(--shadow);
       background:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(46, 39, 69, 0.05) 1px, transparent 1px),
-        var(--card);
-      background-size: 48px 48px, 48px 48px, auto;
+        linear-gradient(rgba(47, 41, 66, 0.045) 1px, transparent 1px),
+        rgba(255, 250, 240, 0.92);
+      background-size: 100% 25px, auto;
       border-radius: var(--radius);
-    }
-
-    .prompt-card {
-      min-height: 320px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      overflow: hidden;
-    }
-
-    .prompt-card:nth-child(odd) {
-      background-color: rgba(255, 253, 246, 0.9);
-    }
-
-    .prompt-card:nth-child(even) {
-      background-color: rgba(249, 255, 250, 0.9);
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: start;
-      padding: 32px 34px 18px;
-    }
-
-    .card-label {
-      margin: 0;
-      font-size: clamp(1.35rem, 1.7vw, 2rem);
-      line-height: 1.12;
-      font-weight: 900;
-    }
-
-    .small-button {
-      min-height: 68px;
-      padding: 0 28px;
-      background: var(--ink);
-      color: white;
-      font-size: clamp(1rem, 1.2vw, 1.55rem);
-      flex: 0 0 auto;
-    }
-
-    .card-body {
-      padding: 12px 34px 22px;
-    }
-
-    .prompt-title {
-      margin: 0 0 20px;
-      font-size: clamp(2.2rem, 3.3vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: 0;
-      font-weight: 950;
-    }
-
-    .prompt-detail {
-      margin: 0;
-      color: #4c3b5a;
-      font-size: clamp(1.18rem, 1.7vw, 2rem);
-      line-height: 1.33;
-      font-weight: 520;
-    }
-
-    .card-foot {
-      min-height: 74px;
-      display: flex;
-      align-items: end;
-      padding: 18px 34px 28px;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.3vw, 1.45rem);
-      font-weight: 850;
-    }
-
-    .recipe-panel {
-      padding: clamp(24px, 2.4vw, 38px);
-      background-color: var(--panel);
+      padding: 20px;
     }
 
     .recipe-panel h2 {
-      margin: 0 0 24px;
-      font-size: clamp(1.8rem, 2.3vw, 3rem);
+      margin: 0 0 14px;
+      font-size: 1.12rem;
+      line-height: 1.2;
       letter-spacing: 0;
     }
 
@@ -227,33 +154,113 @@
     }
 
     .recipe-item {
-      padding: 22px 24px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid rgba(47, 41, 66, 0.18);
       border-radius: 18px;
-      background: rgba(46, 39, 69, 0.07);
+      background: var(--paper);
+      box-shadow: 0 10px 24px rgba(47, 41, 66, 0.11);
+    }
+
+    .recipe-item:nth-child(3n + 1) {
+      background:
+        radial-gradient(circle at 100% 0, rgba(255, 224, 138, 0.26), transparent 34%),
+        linear-gradient(rgba(47, 41, 66, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 100% 25px, auto;
+    }
+
+    .recipe-item:nth-child(3n + 2) {
+      background:
+        radial-gradient(circle at 100% 0, rgba(174, 232, 211, 0.34), transparent 34%),
+        linear-gradient(rgba(47, 41, 66, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 100% 25px, auto;
+    }
+
+    .recipe-item:nth-child(3n) {
+      background:
+        radial-gradient(circle at 100% 0, rgba(255, 217, 227, 0.32), transparent 34%),
+        linear-gradient(rgba(47, 41, 66, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 100% 25px, auto;
+    }
+
+    .recipe-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
     }
 
     .recipe-kicker {
       display: block;
-      margin-bottom: 7px;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 0.77rem;
       line-height: 1.1;
-      font-weight: 950;
+      font-weight: 800;
       text-transform: uppercase;
     }
 
+    .reroll-button {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .sub-reroll-button {
+      align-self: flex-start;
+      min-height: 34px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #cdeee7;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
     .recipe-title {
-      margin: 0 0 7px;
-      font-size: clamp(1.25rem, 1.7vw, 1.75rem);
-      line-height: 1.12;
+      margin: 4px 0 0;
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      line-height: 1.15;
       font-weight: 900;
     }
 
     .recipe-detail {
       margin: 0;
-      color: #3f3652;
-      font-size: clamp(1rem, 1.3vw, 1.35rem);
-      line-height: 1.28;
+      color: #49354f;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .card-note {
+      margin-top: auto;
+      padding-top: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 2px 0 0;
+    }
+
+    .swatch {
+      min-height: 42px;
+      border: 1px solid rgba(47, 41, 66, 0.22);
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
     }
 
     @media (min-width: 980px) {
@@ -261,9 +268,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .recipe-item:first-child {
-        grid-column: 1 / -1;
-      }
+      .recipe-item:first-child { grid-column: 1 / -1; }
     }
 
     .toast {
@@ -277,29 +282,11 @@
     @media (max-width: 760px) {
       .page {
         width: min(100% - 16px, 100%);
-        padding: 22px 14px;
-        border-radius: 26px;
+        border-radius: 22px;
       }
 
-      .builder-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card-top {
-        padding: 24px 22px 12px;
-      }
-
-      .card-body {
-        padding: 8px 22px 18px;
-      }
-
-      .card-foot {
-        padding: 16px 22px 24px;
-      }
-
-      .prompt-card {
-        min-height: 280px;
-      }
+      .hero,
+      .workspace { padding: 20px; }
 
       .primary,
       .secondary {
@@ -327,50 +314,48 @@
         <div class="recipe-list" id="recipe"></div>
         <p class="toast" id="toast"></p>
       </aside>
-
-      <div class="builder-grid" id="cards"></div>
     </section>
   </main>
 
   <script>
-    const colorSchemes = [
-      "Black & White",
-      "Joyful Pop",
-      "Calm & Lavender",
-      "Bold & Fiery",
-      "Ocean Mood",
-      "Earthy & Grounded",
-      "Magical Twilight",
-      "Playful Candy",
-      "Papaya Dream",
-      "Cherry Soda",
-      "Neon Citrus",
-      "Blush & Plum",
-      "True Blue",
-      "Cactus Bloom",
-      "Ice & Ink",
-      "Hot Pink",
-      "Night Shift",
-      "Soft & Strong",
-      "Tangerine Pop",
-      "Mineral Mix",
-      "Cocoa Chic",
-      "Citrus Zing",
-      "True Blue Remix",
-      "Wildflower Whimsy",
-      "Drama Pop",
-      "Blueberry Cream",
-      "Electric Candy",
-      "Fiesta Feather",
-      "Jungle Parade",
-      "Sunset Gecko",
-      "Tropical Roar",
-      "Neon Jaguar",
-      "Zapotec Bloom",
-      "Ruby Rainforest",
-      "Lavender Llama",
-      "Pink Pinata"
-    ];
+    const colorSchemes = {
+      "Black & White": ["#FFFFFF", "#231F20", "#FFFFFF", "#231F20"],
+      "Joyful Pop": ["#EF2B9B", "#F8E907", "#69CEF5", "#9CD41F"],
+      "Calm & Lavender": ["#C4AADB", "#C5DDBE", "#BBE2EE", "#F4F3F3"],
+      "Bold & Fiery": ["#D91D36", "#F14A2E", "#F5BE1A", "#1D1E2F"],
+      "Ocean Mood": ["#215267", "#6A8C7C", "#87CE96", "#BFBBAD"],
+      "Earthy & Grounded": ["#D87526", "#9BA84A", "#E8A99A", "#F2E3BD"],
+      "Magical Twilight": ["#352B56", "#CAB0DE", "#F9C0DD", "#F9D859"],
+      "Papaya Dream": ["#EE2722", "#7BD3DD", "#FFFFFF", "#FCD4AF"],
+      "Playful Candy": ["#F8A3D5", "#B0DDF6", "#FAF66B", "#F03460"],
+      "Cherry Soda": ["#E72641", "#6FCECA", "#FFFFFF", "#231F20"],
+      "Neon Citrus": ["#AFDB32", "#F36817", "#FFFFFF", "#231F20"],
+      "Blush & Plum": ["#F694BA", "#53245A", "#FFFFFF", "#231F20"],
+      "True Blue": ["#364CA7", "#D91D36", "#FFFFFF", "#231F20"],
+      "Cactus Bloom": ["#89A250", "#EE2A38", "#FFFFFF", "#231F20"],
+      "Ice & Ink": ["#BCDDF5", "#4E657B", "#FFFFFF", "#231F20"],
+      "Hot Pink": ["#EF2B9B", "#F36817", "#FFFFFF", "#231F20"],
+      "Night Shift": ["#3E2D91", "#D0ABDB", "#FFFFFF", "#231F20"],
+      "Soft & Strong": ["#D7F0D9", "#202936", "#FFFFFF", "#231F20"],
+      "Tangerine Pop": ["#F46D16", "#4DC3C2", "#FFFFFF", "#EE217E"],
+      "Mineral Mix": ["#33AB71", "#C197D2", "#FFFFFF", "#2B2929"],
+      "Cocoa Chic": ["#694531", "#F6B7AE", "#A4C897", "#231F20"],
+      "Citrus Zing": ["#FBD027", "#F57A36", "#EE2A38", "#ED3D7D"],
+      "True Blue Remix": ["#2948A3", "#4DC3C7", "#5C46A6", "#231F20"],
+      "Wildflower Whimsy": ["#FBD027", "#97CD3C", "#33AB71", "#6CC1ED"],
+      "Drama Pop": ["#C21E25", "#345FB0", "#F68194", "#231F20"],
+      "Blueberry Cream": ["#544B6E", "#D49AA0", "#FFFFFF", "#A6C9B8"],
+      "Electric Candy": ["#BEDF14", "#8147A8", "#F14255", "#231F20"],
+      "Fiesta Feather": ["#F5F014", "#5DC9C4", "#FFFFFF", "#E6057F"],
+      "Jungle Parade": ["#ED0B80", "#2C8081", "#FFFFFF", "#7B3FA3"],
+      "Lavender Llama": ["#90D5EE", "#F89A0F", "#C0B5E1", "#FFFFFF"],
+      "Sunset Gecko": ["#2948A3", "#F46D16", "#AEDB25", "#FFFFFF"],
+      "Tropical Roar": ["#EF2F3F", "#F9D606", "#6DCDBD", "#FFFFFF"],
+      "Neon Jaguar": ["#EE1E9A", "#00ADEF", "#68C530", "#FFFFFF"],
+      "Zapotec Bloom": ["#6D43A5", "#86CE26", "#DE183B", "#FFFFFF"],
+      "Ruby Rainforest": ["#E30F5C", "#F7BD0A", "#FFFFFF", "#3C738A"],
+      "Pink Pinata": ["#ED0F8E", "#9088CC", "#B3DB18", "#FFFFFF"]
+    };
 
     const grids = [
       "Classic Grid",
@@ -415,37 +400,51 @@
       "Loops",
       "Bubbles",
       "Handwriting",
+      "Star",
+      "Burst",
+      "Sparkle",
+      "Flower",
+      "Heart",
+      "4-Petal Flower"
+    ];
+
+    const gridDoodles = marks.concat([
       "Swirly Sprout",
       "Petal Splash",
       "Wandering Vine",
       "Bead Vine",
       "Petal Bloom",
       "Curly Vine",
-      "Clouds",
-      "Star",
+      "Face",
+      "Rainbow",
+      "Stem Flower",
+      "Word"
+    ]);
+
+    const topDoodles = marks.concat([
       "House",
       "City",
-      "Burst",
       "Face",
-      "Sparkle",
-      "Flower",
-      "Heart",
       "Rainbow",
+      "Sun",
       "Moon",
       "Dangles",
-      "Sun",
-      "Word",
       "Stem Flower",
-      "4-Petal Flower"
-    ];
+      "Swirly Sprout",
+      "Wandering Vine",
+      "Bead Vine",
+      "Petal Splash",
+      "Curly Vine"
+    ]);
 
     const decks = {
       color: {
         label: "Color Scheme",
         footer: "Use this palette mood for every layer.",
-        cards: colorSchemes.map((name) => ({
+        cards: Object.entries(colorSchemes).map(([name, colors]) => ({
           title: name,
-          detail: "Choose colors inspired by this mood, then repeat them through the whole spread."
+          detail: "Choose colors inspired by this mood, then repeat them through the whole spread.",
+          colors
         }))
       },
       prep: {
@@ -456,7 +455,7 @@
           ["Split-Color Spread", "Paint each page of your page spread a different color."],
           ["White Spread", "Paint your page spread with white."],
           ["Messy Paint Strokes", "Paint messy paint strokes using three colors and white."],
-          ["Collage Cover", "Cover the page with collage papers."]
+          ["Add a Textured Background", "Build a background with dry brush, scribbles, stamping, layered marks, intuitive collage or crinkly tissue paper."]
         ].map(([title, detail]) => ({ title, detail }))
       },
       texture: {
@@ -466,53 +465,56 @@
           { title: "Paint Swatches", detail: "Add loose color swatches across the page." },
           {
             title: "Divide the Page",
-            detail: () => `Divide the page with a ${pick(grids)}.`
+            kind: "grid"
           },
-          { title: "Intuitive Collage", detail: "Let scraps, shapes, and color guide the next layer." },
           {
             title: "Pattern of Marks",
-            detail: () => `Fill the page with a repeating pattern of ${pick(marks)}.`
+            kind: "marks"
           },
           { title: "Whimsical Words", detail: "Scatter playful words, labels, or tiny phrases." },
-          { title: "Add Stripes", detail: "Add stripes by painting, drawing, or collaging them in." },
-          { title: "Add Texture", detail: "Build texture with dry brush, scribbles, stamping, or layered marks." }
+          { title: "Add Stripes", detail: "Add stripes by painting, drawing, or collaging them in." }
         ]
       },
       development: {
         label: "Page Development",
         footer: "Build depth and personality.",
         cards: [
-          { title: "Repeat a Texture Prompt", detail: () => `Repeat layer 2 with: ${roll("texture").title}.` },
+          { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
           { title: "Add Collage Fodder", detail: "Glue on painted paper, torn scraps, collage shapes, or other fodder." },
           { title: "Decorative Edges", detail: "Add borders, scallops, dots, stripes, or doodles along the edges." },
           { title: "Write Something", detail: "Add journaling, a label, a note, or a phrase." },
           { title: "Interactive Element", detail: "Add a flap, pocket, foldout, tag, window, or hidden bit." },
           { title: "Paint Negative Space", detail: "Paint over or around a negative space to make it more intentional." },
           { title: "Brain Dump", detail: "Write fast, loose thoughts into one section or across a layer." },
-          { title: "Doodle on Top", detail: "Doodle directly on top of an existing layer." },
+          { title: "Doodle on Top", kind: "topDoodle" },
           { title: "Add a Cluster", detail: "Group several small elements together so they feel like one moment." },
           { title: "Add a Whimsical Tab", detail: "Attach or draw a tab that makes the page feel touchable." },
-          { title: "Stack 'em", detail: "Stack papers, shapes, marks, or motifs in a playful pile." },
-          { title: "Add a Focal Point", detail: "Create one place where the eye lands first." }
+          { title: "Stack 'em", detail: "Stack papers, shapes, marks, or motifs in a playful pile." }
         ]
       },
       keepGoing: {
         label: "Keep Going",
         footer: "Decide what the page needs next.",
         cards: [
-          { title: "Repeat a Texture Prompt", detail: () => `Repeat layer 2 with: ${roll("texture").title}.` },
-          { title: "Repeat a Development Prompt", detail: () => `Repeat layer 3 with: ${roll("development").title}.` },
+          { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
+          { title: "Repeat Any Layer 3 Prompt", detail: "Reroll Layer 3 if you want a new development prompt, then repeat that result." },
           { title: "Thicken the Lines", detail: "Choose a few lines and make them bolder." },
           { title: "Repeat a Motif", detail: "Pick one motif and echo it somewhere else on the spread." },
           { title: "Cut Out a Section", detail: "Cut, tear, or open a section to reveal another layer." },
           { title: "Paint or Scribble Over a Section", detail: "Cover part of the page with paint, pencil, marker, or crayon." },
           { title: "Splatter Something", detail: "Splatter paint, ink, or watered-down color." },
           { title: "Add Contrast", detail: "Use dark against light, big against small, quiet against busy." },
+          { title: "Add a Focal Point", detail: "Create one place where the eye lands first." },
           { title: "Add Details with Pen", detail: "Add tiny outlines, dots, labels, hatching, or finishing marks." },
           { title: "Stop", detail: "Let the page rest. The next layer can wait." }
         ]
       }
     };
+
+    const gridDevelopmentCards = [
+      { title: "Fill the Grid Spaces with Color", detail: "Fill the grid spaces with color." },
+      { title: "Fill the Grid Spaces with Doodles", kind: "gridDoodle" }
+    ];
 
     const order = ["color", "prep", "texture", "development", "keepGoing"];
     const state = {};
@@ -522,46 +524,107 @@
     }
 
     function resolveCard(card) {
+      const mark = card.kind === "marks" ? pick(marks) : null;
+      const grid = card.kind === "grid" ? pick(grids) : null;
+      const doodle = card.kind === "gridDoodle" ? pick(gridDoodles) : card.kind === "topDoodle" ? pick(topDoodles) : null;
       return {
         title: card.title,
-        detail: typeof card.detail === "function" ? card.detail() : card.detail
+        detail: mark ? `Fill the page with a repeating pattern of ${mark}.` : grid ? `Divide the page with a ${grid} grid.` : card.kind === "gridDoodle" ? `Fill the grid spaces with ${doodle}.` : card.kind === "topDoodle" ? `Doodle ${doodle} on top of an existing layer.` : typeof card.detail === "function" ? card.detail() : card.detail,
+        mark,
+        grid,
+        doodle,
+        kind: card.kind || null,
+        colors: card.colors || null
       };
     }
 
     function roll(key) {
-      return resolveCard(pick(decks[key].cards));
+      return resolveCard(pick(cardsFor(key)));
+    }
+
+    function cardsFor(key) {
+      if (key === "development" && state.texture && state.texture.title === "Divide the Page") {
+        return decks.development.cards.concat(gridDevelopmentCards);
+      }
+      return decks[key].cards;
+    }
+
+    function rerollMark() {
+      if (!state.texture || state.texture.kind !== "marks") return;
+      let nextMark = pick(marks);
+      while (marks.length > 1 && nextMark === state.texture.mark) {
+        nextMark = pick(marks);
+      }
+      state.texture.mark = nextMark;
+      state.texture.detail = `Fill the page with a repeating pattern of ${nextMark}.`;
+    }
+
+    function rerollGrid() {
+      if (!state.texture || state.texture.kind !== "grid") return;
+      let nextGrid = pick(grids);
+      while (grids.length > 1 && nextGrid === state.texture.grid) {
+        nextGrid = pick(grids);
+      }
+      state.texture.grid = nextGrid;
+      state.texture.detail = `Divide the page with a ${nextGrid} grid.`;
+    }
+
+    function rerollDoodle() {
+      if (!state.development || (state.development.kind !== "gridDoodle" && state.development.kind !== "topDoodle")) return;
+      const doodlePool = state.development.kind === "gridDoodle" ? gridDoodles : topDoodles;
+      let nextDoodle = pick(doodlePool);
+      while (doodlePool.length > 1 && nextDoodle === state.development.doodle) {
+        nextDoodle = pick(doodlePool);
+      }
+      state.development.doodle = nextDoodle;
+      state.development.detail = state.development.kind === "gridDoodle"
+        ? `Fill the grid spaces with ${nextDoodle}.`
+        : `Doodle ${nextDoodle} on top of an existing layer.`;
+    }
+
+    function recipeLabel(key) {
+      if (key === "color") return "Color Scheme";
+      if (key === "prep") return "Layer 1: Page Prep";
+      if (key === "texture") return "Layer 2: Visual Texture";
+      if (key === "development") return "Layer 3: Page Development";
+      if (key === "keepGoing") return "Layer 4+: Keep Going";
+      return decks[key].label;
     }
 
     function render() {
-      const cardRoot = document.getElementById("cards");
       const recipeRoot = document.getElementById("recipe");
-
-      cardRoot.innerHTML = order.map((key) => {
-        const deck = decks[key];
-        const card = state[key];
-        return `
-          <article class="prompt-card">
-            <header class="card-top">
-              <h2 class="card-label">${deck.label}</h2>
-              <button class="small-button" type="button" data-reroll="${key}" aria-label="Reroll ${deck.label}">Reroll</button>
-            </header>
-            <div class="card-body">
-              <h3 class="prompt-title">${card.title}</h3>
-              <p class="prompt-detail">${card.detail}</p>
-            </div>
-            <footer class="card-foot">${deck.footer}</footer>
-          </article>
-        `;
-      }).join("");
 
       recipeRoot.innerHTML = order.map((key, index) => {
         const deck = decks[key];
         const card = state[key];
+        const label = recipeLabel(key);
+        const swatches = card.colors ? `
+          <div class="swatches" aria-label="${card.title} color swatches">
+            ${card.colors.map((color) => `<span class="swatch" title="${color}" style="background-color: ${color}"></span>`).join("")}
+          </div>
+        ` : "";
+        const markReroll = key === "texture" && card.kind === "marks" ? `
+          <button class="sub-reroll-button" type="button" data-reroll-mark>Reroll Marks</button>
+        ` : "";
+        const gridReroll = key === "texture" && card.kind === "grid" ? `
+          <button class="sub-reroll-button" type="button" data-reroll-grid>Reroll Grid</button>
+        ` : "";
+        const doodleReroll = key === "development" && (card.kind === "gridDoodle" || card.kind === "topDoodle") ? `
+          <button class="sub-reroll-button" type="button" data-reroll-doodle>Reroll Doodle</button>
+        ` : "";
         return `
           <article class="recipe-item">
-            <span class="recipe-kicker">${index + 1}. ${deck.label}</span>
+            <div class="recipe-top">
+              <span class="recipe-kicker">${label}</span>
+              <button class="reroll-button" type="button" data-reroll="${key}" aria-label="Reroll ${deck.label}">Reroll</button>
+            </div>
             <h3 class="recipe-title">${card.title}</h3>
             <p class="recipe-detail">${card.detail}</p>
+            ${markReroll}
+            ${gridReroll}
+            ${doodleReroll}
+            ${swatches}
+            <div class="card-note">${deck.footer}</div>
           </article>
         `;
       }).join("");
@@ -569,6 +632,30 @@
       document.querySelectorAll("[data-reroll]").forEach((button) => {
         button.addEventListener("click", () => {
           state[button.dataset.reroll] = roll(button.dataset.reroll);
+          setToast("");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-reroll-mark]").forEach((button) => {
+        button.addEventListener("click", () => {
+          rerollMark();
+          setToast("");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-reroll-grid]").forEach((button) => {
+        button.addEventListener("click", () => {
+          rerollGrid();
+          setToast("");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-reroll-doodle]").forEach((button) => {
+        button.addEventListener("click", () => {
+          rerollDoodle();
           setToast("");
           render();
         });
@@ -585,9 +672,8 @@
 
     function recipeText() {
       return order.map((key, index) => {
-        const deck = decks[key];
         const card = state[key];
-        return `${index + 1}. ${deck.label}: ${card.title}\n${card.detail}`;
+        return `${recipeLabel(key)}: ${card.title}\n${card.detail}`;
       }).join("\n\n");
     }
 
