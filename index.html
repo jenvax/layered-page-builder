@@ -127,7 +127,7 @@
       display: grid;
       gap: 12px;
       align-items: start;
-      padding: 14px 20px 20px;
+      padding: 14px 20px;
     }
 
     .recipe-panel {
@@ -138,7 +138,7 @@
         rgba(255, 250, 240, 0.92);
       background-size: 100% 25px, auto;
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 12px;
     }
 
     .recipe-panel h2 {
@@ -151,6 +151,7 @@
     .recipe-list {
       display: grid;
       gap: 10px;
+      align-items: start;
     }
 
     .recipe-item {
@@ -242,7 +243,7 @@
     }
 
     .card-note {
-      margin-top: auto;
+      margin-top: 0;
       padding-top: 4px;
       color: var(--muted);
       font-size: 0.68rem;
@@ -270,11 +271,15 @@
     }
 
     .toast {
-      min-height: 18px;
-      margin: 8px 0 0;
+      min-height: 0;
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 0.82rem;
       font-weight: 750;
+    }
+
+    .toast:empty {
+      display: none;
     }
 
     @media (max-width: 760px) {
