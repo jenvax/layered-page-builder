@@ -384,7 +384,7 @@
       "Pink Pinata": ["#ED0F8E", "#9088CC", "#B3DB18", "#FFFFFF"]
     };
 
-    const grids = [
+    const originalGrids = [
       "Classic Grid",
       "Scribble Circles",
       "Wonky Waves",
@@ -401,6 +401,9 @@
       "Wonky Grid",
       "3D Star"
     ];
+
+    const grids = ["No grid", "Stripes"].concat(originalGrids);
+    const openPagePrompt = "Leave the page open and allow your designs to flow across the entire spread.";
 
     const marks = [
       "Aura Lines",
@@ -485,68 +488,105 @@
         ].map(([title, detail]) => ({ title, detail }))
       },
       texture: {
-        label: "Visual Texture",
+        label: "Structure the Page",
         cards: [
-          { title: "Paint Swatches", detail: "Add loose color swatches across the page." },
           {
             title: "Divide the Page",
             kind: "grid"
           },
           {
-            title: "Pattern of Marks",
-            kind: "marks"
-          },
-          { title: "Whimsical Words", detail: "Scatter playful words, labels, or tiny phrases." },
-          { title: "Fill the Page with One Shape", detail: "Repeat one shape until it fills the page." },
-          { title: "Add Stripes", detail: "Add stripes by painting, drawing, or collaging them in." },
-          { title: "Cover or Paint Over an Area", detail: "Cover or paint over one area of the page." }
+            title: "Large Block Word",
+            kind: "word"
+          }
         ]
       },
       development: {
-        label: "Page Development",
-        cards: [
-          { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
-          { title: "Add Collage Fodder", detail: "Glue on painted paper, torn scraps, collage shapes, or other fodder." },
-          { title: "Decorative Edges", detail: "Add borders, scallops, dots, stripes, or doodles along the edges." },
-          { title: "Write Something", detail: "Add journaling, a label, a note, or a phrase." },
-          { title: "Interactive Element", detail: "Add a flap, pocket, foldout, tag, window, or hidden bit." },
-          { title: "Paint Negative Space", detail: "Paint over or around a negative space to make it more intentional." },
-          { title: "Cover or Paint Over an Area", detail: "Cover or paint over one area of the page." },
-          { title: "Brain Dump", detail: "Write fast, loose thoughts into one section or across a layer." },
-          { title: "Doodle on Top", kind: "topDoodle" },
-          { title: "Add a Cluster", detail: "Group several small elements together so they feel like one moment." },
-          { title: "Add a Whimsical Tab", detail: "Attach or draw a tab that makes the page feel touchable." },
-          { title: "Stack 'em", detail: "Stack papers, shapes, marks, or motifs in a playful pile." }
-        ]
+        label: "Visual Texture",
+        cards: []
       },
       keepGoing: {
-        label: "Keep Going",
+        label: "Add Shapes",
         cards: [
-          { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
-          { title: "Repeat Any Layer 3 Prompt", detail: "Reroll Layer 3 if you want a new development prompt, then repeat that result." },
-          { title: "Thicken the Lines", detail: "Choose a few lines and make them bolder." },
-          { title: "Repeat a Motif", detail: "Pick one motif and echo it somewhere else on the spread." },
-          { title: "Cut Out a Section", detail: "Cut, tear, or open a section to reveal another layer." },
-          { title: "Paint or Scribble Over a Section", detail: "Cover part of the page with paint, pencil, marker, or crayon." },
-          { title: "Splatter Something", detail: "Splatter paint, ink, or watered-down color." },
-          { title: "Add Contrast", detail: "Use dark against light, big against small, quiet against busy." },
-          { title: "Add a Focal Point", detail: "Create one place where the eye lands first." },
-          { title: "Add Details with Pen", detail: "Add tiny outlines, dots, labels, hatching, or finishing marks." },
-          { title: "Stop", detail: "Let the page rest. The next layer can wait." }
+          { title: "Add Shapes", kind: "shape" }
+        ]
+      },
+      characters: {
+        label: "Discover Characters",
+        cards: [
+          { title: "Turn a Shape into a Character", detail: "Turn a shape into a character." }
+        ]
+      },
+      world: {
+        label: "Develop the World",
+        cards: [
+          { title: "Add a Cluster", detail: "Add a cluster." },
+          { title: "Interactive Element", detail: "Add an interactive element." },
+          { title: "Decorative Edges", detail: "Add decorative edges." },
+          { title: "Add a Whimsical Tab", detail: "Add a whimsical tab." },
+          { title: "Stack 'Em", detail: "Stack 'em." },
+          { title: "Write Something", detail: "Write something." },
+          { title: "Brain Dump", detail: "Brain dump." },
+          { title: "Journal on the page.", detail: "Journal on the page." }
+        ]
+      },
+      finishing: {
+        label: "Finishing Touches",
+        cards: [
+          { title: "Thicken the Lines", detail: "Thicken the lines." },
+          { title: "Paint or Scribble Over a Section", detail: "Paint or scribble over a section." },
+          { title: "Cover or Paint Over an Area", detail: "Cover or paint over an area." },
+          { title: "Paint Negative Space", detail: "Paint negative space." },
+          { title: "Cut Out a Section", detail: "Cut out a section." },
+          { title: "Splatter Something", detail: "Splatter something." },
+          { title: "Doodle on Top", detail: "Doodle on top." },
+          { title: "Doodle In Between", detail: "Doodle in between." }
         ]
       }
     };
 
-    const gridDevelopmentCards = [
+    const shapes = [
+      "Circles",
+      "Squares",
+      "Gumdrops",
+      "Blobs",
+      "Scallops",
+      "Hearts",
+      "Leaves",
+      "Teardrops",
+      "Clouds"
+    ];
+
+    const words = [
+      "PLAY",
+      "CREATE",
+      "WONDER",
+      "BLOOM",
+      "MAGIC",
+      "DREAM",
+      "IMAGINE",
+      "JOY",
+      "GROW",
+      "SMILE"
+    ];
+
+    const gridTextureCards = [
       { title: "Fill the Grid Spaces with Color", detail: "Fill the grid spaces with color." },
-      { title: "Fill the Grid Spaces with Doodles", kind: "gridDoodle" }
+      { title: "Fill the Grid Spaces with Doodle & Marks", kind: "gridDoodle" }
     ];
 
-    const whiteSpreadTextureCards = [
-      { title: "Intuitive Watercolor", detail: "Add intuitive watercolor marks, blooms, washes, or loose shapes." }
+    const openPageTextureCards = [
+      { title: "Add Stripes", detail: "Add stripes by painting, drawing, or collaging them in." },
+      { title: "Paint Swatches", detail: "Add loose color swatches across the page." },
+      { title: "Whimsical Words", detail: "Scatter playful words, labels, or tiny phrases." },
+      { title: "Fill the Page with One Shape", detail: "Repeat one shape until it fills the page." }
     ];
 
-    const order = ["color", "prep", "texture", "development", "keepGoing"];
+    const intuitiveWatercolorCard = {
+      title: "Intuitive Watercolor",
+      detail: "Add intuitive watercolor marks, blooms, washes, or loose shapes."
+    };
+
+    const order = ["color", "prep", "texture", "development", "keepGoing", "characters", "world", "finishing"];
     const state = {};
 
     function pick(items) {
@@ -555,17 +595,28 @@
 
     function resolveCard(card) {
       const mark = card.kind === "marks" ? pick(marks) : null;
-      const grid = card.kind === "grid" ? pick(grids) : null;
+      const gridOptions = card.gridOptions || grids;
+      const grid = card.kind === "grid" ? pick(gridOptions) : null;
       const doodle = card.kind === "gridDoodle" ? pick(gridDoodles) : card.kind === "topDoodle" ? pick(topDoodles) : null;
+      const shape = card.kind === "shape" ? pick(shapes) : null;
+      const word = card.kind === "word" ? pick(words) : null;
       return {
         title: card.title,
-        detail: mark ? `Fill the page with a repeating pattern of ${mark}.` : grid ? `Divide the page with a ${grid} grid.` : card.kind === "gridDoodle" ? `Fill the grid spaces with ${doodle}.` : card.kind === "topDoodle" ? `Doodle ${doodle} on top of an existing layer.` : typeof card.detail === "function" ? card.detail() : card.detail,
+        detail: mark ? `Fill the page with a repeating pattern of ${mark}.` : grid ? gridPrompt(grid) : card.kind === "gridDoodle" ? `Fill the grid spaces with ${doodle}.` : card.kind === "topDoodle" ? `Doodle ${doodle} on top of an existing layer.` : shape ? `Add ${shape} to your page.` : word ? `Write ${word} in large block letters.` : typeof card.detail === "function" ? card.detail() : card.detail,
         mark,
         grid,
         doodle,
+        shape,
+        word,
         kind: card.kind || null,
+        gridOptions,
         colors: card.colors || null
       };
+    }
+
+    function gridPrompt(grid) {
+      if (grid === "No grid") return openPagePrompt;
+      return `Divide the page with a ${grid} grid.`;
     }
 
     function roll(key) {
@@ -573,33 +624,40 @@
     }
 
     function cardsFor(key) {
-      if (key === "texture" && state.prep && state.prep.title === "White Spread") {
-        return decks.texture.cards.concat(whiteSpreadTextureCards);
+      if (key === "development" && state.texture && state.texture.grid === "No grid") {
+        if (state.prep && state.prep.title === "White Spread") {
+          return openPageTextureCards.concat(intuitiveWatercolorCard);
+        }
+        return openPageTextureCards;
       }
-      if (key === "development" && state.texture && state.texture.title === "Divide the Page") {
-        return decks.development.cards.concat(gridDevelopmentCards);
+      if (key === "development") {
+        return gridTextureCards;
       }
       return decks[key].cards;
     }
 
-    function rerollMark() {
-      if (!state.texture || state.texture.kind !== "marks") return;
+    function rerollMark(key) {
+      if (!state[key] || state[key].kind !== "marks") return;
       let nextMark = pick(marks);
-      while (marks.length > 1 && nextMark === state.texture.mark) {
+      while (marks.length > 1 && nextMark === state[key].mark) {
         nextMark = pick(marks);
       }
-      state.texture.mark = nextMark;
-      state.texture.detail = `Fill the page with a repeating pattern of ${nextMark}.`;
+      state[key].mark = nextMark;
+      state[key].detail = `Fill the page with a repeating pattern of ${nextMark}.`;
     }
 
-    function rerollGrid() {
-      if (!state.texture || state.texture.kind !== "grid") return;
-      let nextGrid = pick(grids);
-      while (grids.length > 1 && nextGrid === state.texture.grid) {
-        nextGrid = pick(grids);
+    function rerollGrid(key) {
+      if (!state[key] || state[key].kind !== "grid") return;
+      const gridOptions = state[key].gridOptions || grids;
+      let nextGrid = pick(gridOptions);
+      while (gridOptions.length > 1 && nextGrid === state[key].grid) {
+        nextGrid = pick(gridOptions);
       }
-      state.texture.grid = nextGrid;
-      state.texture.detail = `Divide the page with a ${nextGrid} grid.`;
+      state[key].grid = nextGrid;
+      state[key].detail = gridPrompt(nextGrid);
+      if (key === "texture") {
+        state.development = roll("development");
+      }
     }
 
     function rerollDoodle() {
@@ -615,12 +673,35 @@
         : `Doodle ${nextDoodle} on top of an existing layer.`;
     }
 
+    function rerollShape() {
+      if (!state.keepGoing || state.keepGoing.kind !== "shape") return;
+      let nextShape = pick(shapes);
+      while (shapes.length > 1 && nextShape === state.keepGoing.shape) {
+        nextShape = pick(shapes);
+      }
+      state.keepGoing.shape = nextShape;
+      state.keepGoing.detail = `Add ${nextShape} to your page.`;
+    }
+
+    function rerollWord() {
+      if (!state.texture || state.texture.kind !== "word") return;
+      let nextWord = pick(words);
+      while (words.length > 1 && nextWord === state.texture.word) {
+        nextWord = pick(words);
+      }
+      state.texture.word = nextWord;
+      state.texture.detail = `Write ${nextWord} in large block letters.`;
+    }
+
     function recipeLabel(key) {
       if (key === "color") return "Color Scheme";
       if (key === "prep") return "Layer 1: Page Prep";
-      if (key === "texture") return "Layer 2: Visual Texture";
-      if (key === "development") return "Layer 3: Page Development";
-      if (key === "keepGoing") return "Layer 4+: Keep Going";
+      if (key === "texture") return "Layer 2: Structure the Page";
+      if (key === "development") return "Layer 3: Visual Texture";
+      if (key === "keepGoing") return "Layer 4: Add Shapes";
+      if (key === "characters") return "Layer 5: Discover Characters";
+      if (key === "world") return "Layer 6: Develop the World";
+      if (key === "finishing") return "Layer 7: Finishing Touches";
       return decks[key].label;
     }
 
@@ -637,14 +718,19 @@
           </div>
         ` : "";
         const markReroll = key === "texture" && card.kind === "marks" ? `
-          <button class="sub-reroll-button" type="button" data-reroll-mark>Reroll Marks</button>
+          <button class="sub-reroll-button" type="button" data-reroll-mark="${key}">Reroll Marks</button>
         ` : "";
-        const gridReroll = key === "texture" && card.kind === "grid" ? `
-          <button class="sub-reroll-button" type="button" data-reroll-grid>Reroll Grid</button>
-        ` : "";
+        const gridReroll = "";
         const doodleReroll = key === "development" && (card.kind === "gridDoodle" || card.kind === "topDoodle") ? `
           <button class="sub-reroll-button" type="button" data-reroll-doodle>Reroll Doodle</button>
         ` : "";
+        const wordReroll = key === "texture" && card.kind === "word" ? `
+          <button class="sub-reroll-button" type="button" data-reroll-word>Reroll Word</button>
+        ` : "";
+        const shapeReroll = "";
+        const rerollButton = key === "characters" ? "" : `
+              <button class="reroll-button" type="button" data-reroll="${key}" aria-label="Reroll ${deck.label}">Reroll</button>
+        `;
         const mainContent = key === "color" ? `
           <div class="color-content">
             <div>
@@ -659,13 +745,15 @@
           ${markReroll}
           ${gridReroll}
           ${doodleReroll}
+          ${wordReroll}
+          ${shapeReroll}
           ${swatches}
         `;
         return `
           <article class="recipe-item ${key === "color" ? "color-card" : ""}">
             <div class="recipe-top">
               <span class="recipe-kicker">${label}</span>
-              <button class="reroll-button" type="button" data-reroll="${key}" aria-label="Reroll ${deck.label}">Reroll</button>
+              ${rerollButton}
             </div>
             ${mainContent}
           </article>
@@ -675,6 +763,9 @@
       document.querySelectorAll("[data-reroll]").forEach((button) => {
         button.addEventListener("click", () => {
           state[button.dataset.reroll] = roll(button.dataset.reroll);
+          if (button.dataset.reroll === "prep" || button.dataset.reroll === "texture") {
+            state.development = roll("development");
+          }
           setToast("");
           render();
         });
@@ -682,7 +773,7 @@
 
       document.querySelectorAll("[data-reroll-mark]").forEach((button) => {
         button.addEventListener("click", () => {
-          rerollMark();
+          rerollMark(button.dataset.rerollMark);
           setToast("");
           render();
         });
@@ -690,7 +781,7 @@
 
       document.querySelectorAll("[data-reroll-grid]").forEach((button) => {
         button.addEventListener("click", () => {
-          rerollGrid();
+          rerollGrid(button.dataset.rerollGrid);
           setToast("");
           render();
         });
@@ -699,6 +790,22 @@
       document.querySelectorAll("[data-reroll-doodle]").forEach((button) => {
         button.addEventListener("click", () => {
           rerollDoodle();
+          setToast("");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-reroll-word]").forEach((button) => {
+        button.addEventListener("click", () => {
+          rerollWord();
+          setToast("");
+          render();
+        });
+      });
+
+      document.querySelectorAll("[data-reroll-shape]").forEach((button) => {
+        button.addEventListener("click", () => {
+          rerollShape();
           setToast("");
           render();
         });
