@@ -48,8 +48,8 @@
     }
 
     .page {
-      width: min(1200px, calc(100% - 24px));
-      margin: 4px auto 18px;
+      width: min(860px, calc(100% - 24px));
+      margin: 2px auto 14px;
       padding: 0;
       overflow: hidden;
       border: 2px solid rgba(244, 189, 135, 0.7);
@@ -67,7 +67,7 @@
     .hero {
       display: grid;
       gap: 0;
-      padding: 12px 28px 8px;
+      padding: 10px 28px 6px;
     }
 
     h1 {
@@ -127,7 +127,7 @@
       display: grid;
       gap: 12px;
       align-items: start;
-      padding: 8px 28px 14px;
+      padding: 8px 28px 10px;
     }
 
     .recipe-panel {
@@ -150,7 +150,7 @@
 
     .recipe-list {
       display: grid;
-      gap: 5px;
+      gap: 7px;
       align-items: start;
     }
 
@@ -159,8 +159,8 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      padding: 6px 86px 6px 12px;
+      gap: 4px;
+      padding: 10px 92px 10px 14px;
       border: 1px solid rgba(47, 41, 66, 0.18);
       border-radius: 16px;
       background: var(--paper);
@@ -242,14 +242,6 @@
       line-height: 1.16;
     }
 
-    .card-note {
-      margin-top: 0;
-      padding-top: 1px;
-      color: var(--muted);
-      font-size: 0.68rem;
-      font-weight: 700;
-    }
-
     .swatches {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -262,6 +254,27 @@
       border: 1px solid rgba(47, 41, 66, 0.22);
       border-radius: 7px;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+    }
+
+    .color-card {
+      padding-right: 92px;
+    }
+
+    .color-card .color-content {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) 180px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .color-card .swatches {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      margin: 0;
+    }
+
+    .color-card .swatch {
+      min-height: 42px;
     }
 
     .toast {
@@ -291,6 +304,15 @@
 
       .recipe-detail {
         font-size: 0.92rem;
+      }
+
+      .color-card .color-content {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .color-card .swatches {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
       .primary,
@@ -445,16 +467,14 @@
     const decks = {
       color: {
         label: "Color Scheme",
-        footer: "Use this palette mood for every layer.",
         cards: Object.entries(colorSchemes).map(([name, colors]) => ({
           title: name,
-          detail: "Choose colors inspired by this mood, then repeat them through the whole spread.",
+          detail: "Use these colors through your whole page spread.",
           colors
         }))
       },
       prep: {
         label: "Page Prep",
-        footer: "Start with the whole spread.",
         cards: [
           ["One-Color Spread", "Paint your page spread with one color."],
           ["Split-Color Spread", "Paint each page of your page spread a different color."],
@@ -466,7 +486,6 @@
       },
       texture: {
         label: "Visual Texture",
-        footer: "Add the first visible texture layer.",
         cards: [
           { title: "Paint Swatches", detail: "Add loose color swatches across the page." },
           {
@@ -485,7 +504,6 @@
       },
       development: {
         label: "Page Development",
-        footer: "Build depth and personality.",
         cards: [
           { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
           { title: "Add Collage Fodder", detail: "Glue on painted paper, torn scraps, collage shapes, or other fodder." },
@@ -503,7 +521,6 @@
       },
       keepGoing: {
         label: "Keep Going",
-        footer: "Decide what the page needs next.",
         cards: [
           { title: "Repeat Any Layer 2 Prompt", detail: "Reroll Layer 2 if you want a new texture prompt, then repeat that result." },
           { title: "Repeat Any Layer 3 Prompt", detail: "Reroll Layer 3 if you want a new development prompt, then repeat that result." },
@@ -628,19 +645,29 @@
         const doodleReroll = key === "development" && (card.kind === "gridDoodle" || card.kind === "topDoodle") ? `
           <button class="sub-reroll-button" type="button" data-reroll-doodle>Reroll Doodle</button>
         ` : "";
+        const mainContent = key === "color" ? `
+          <div class="color-content">
+            <div>
+              <h3 class="recipe-title">${card.title}</h3>
+              <p class="recipe-detail">${card.detail}</p>
+            </div>
+            ${swatches}
+          </div>
+        ` : `
+          <h3 class="recipe-title">${card.title}</h3>
+          <p class="recipe-detail">${card.detail}</p>
+          ${markReroll}
+          ${gridReroll}
+          ${doodleReroll}
+          ${swatches}
+        `;
         return `
-          <article class="recipe-item">
+          <article class="recipe-item ${key === "color" ? "color-card" : ""}">
             <div class="recipe-top">
               <span class="recipe-kicker">${label}</span>
               <button class="reroll-button" type="button" data-reroll="${key}" aria-label="Reroll ${deck.label}">Reroll</button>
             </div>
-            <h3 class="recipe-title">${card.title}</h3>
-            <p class="recipe-detail">${card.detail}</p>
-            ${markReroll}
-            ${gridReroll}
-            ${doodleReroll}
-            ${swatches}
-            <div class="card-note">${deck.footer}</div>
+            ${mainContent}
           </article>
         `;
       }).join("");
