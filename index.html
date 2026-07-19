@@ -588,9 +588,19 @@
 
     const order = ["color", "prep", "texture", "development", "keepGoing", "characters", "world", "finishing"];
     const state = {};
+    const prepDrawPile = [];
 
     function pick(items) {
       return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function shuffled(items) {
+      const copy = items.slice();
+      for (let index = copy.length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+      }
+      return copy;
     }
 
     function resolveCard(card) {
@@ -620,6 +630,12 @@
     }
 
     function roll(key) {
+      if (key === "prep") {
+        if (!prepDrawPile.length) {
+          prepDrawPile.push(...shuffled(cardsFor(key)));
+        }
+        return resolveCard(prepDrawPile.pop());
+      }
       return resolveCard(pick(cardsFor(key)));
     }
 
