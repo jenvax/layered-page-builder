@@ -547,10 +547,11 @@
     const shapes = [
       "Circles",
       "Squares",
+      "Rectangles",
+      "Arches",
       "Gumdrops",
       "Blobs",
       "Scallops",
-      "Hearts",
       "Leaves",
       "Teardrops",
       "Clouds"
@@ -647,6 +648,9 @@
         return openPageTextureCards;
       }
       if (key === "development") {
+        if (state.prep && state.prep.title === "White Spread") {
+          return gridTextureCards.concat(intuitiveWatercolorCard);
+        }
         return gridTextureCards;
       }
       return decks[key].cards;
